@@ -1,0 +1,120 @@
+h1 {
+    font-size: 50px;
+    letter-spacing: 5px;
+    text-align: center;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+td {
+    background-color: #c9cacb;
+    border: solid 3px;
+    border-radius: 5px;
+
+    height: 45px;
+    width: 45px;
+}
+
+table {
+    border-spacing: 5px;
+
+    margin: auto;
+}
+
+
+
+.button_gestion_2 {
+    border: solid 1px;
+    border-radius: 7px;
+    font-size: 15px;
+    cursor: pointer;
+    
+    height: 30px;
+    width: 100px;
+}
+
+.button_gestion {
+    display: block;
+
+    border: solid 1px;
+    border-radius: 7px;
+    font-size: 15px;
+    
+    height: 40px;
+    width: 130px;
+}
+
+.button_tableau {
+    background-color: #00000000;
+    border: #00000000;
+    cursor: pointer;
+    text-align: center;
+    font-size: 30px;
+
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.tableau {
+    margin: auto;
+    margin-right: 0px;
+}
+
+.gestion {
+    border: solid 3px;
+    border-radius: 15px;
+
+    padding: 30px;
+    padding-top: 10px;
+    margin: auto;
+    height: 425px;
+    width: 325px;
+}
+
+.carre {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    border: solid 3px;
+    border-radius: 15px;
+
+    margin: auto;
+    height: 675px;
+    width: 1400px;
+}
+
+
+
+#crypte {
+    display: block;
+
+    height: 115px;
+    width: 300px;
+}
+
+#decrypte {
+    display: block;
+    
+    margin-bottom: 30px;
+}
+
+#valide {
+    display: block;
+    
+    border: solid 1px;
+    border-radius: 7px;
+    
+    margin-top: 5px;
+    margin-bottom: 20px;
+}

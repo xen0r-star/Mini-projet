@@ -1,0 +1,166 @@
+body {
+    background-image: url(../Image/tortue.gif);
+    background-size: auto;
+    background-color: #000000;
+    background-repeat: repeat;
+    background-position: center;
+    animation: color infinite .1s;
+}
+
+@keyframes color {
+    0% {
+        color: #f0f0f0;
+    }
+
+    50% {
+        color: #0f0f0f;
+    }
+
+    100% {
+        color: #f0f0f0;
+    }
+}
+
+@keyframes background {
+    0% {
+        background: #f0f0f0;
+        border: solid 3px #0f0f0f;
+    }
+
+    50% {
+        background: #0f0f0f;
+        border: solid 3px #f0f0f0;
+    }
+
+    100% {
+        background: #f0f0f0;
+        border: solid 3px #0f0f0f;
+    }
+}
+
+h1 {
+    font-family: fantasy;
+    font-size: 50px;
+    letter-spacing: 5px;
+    text-align: center;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+td {
+    animation: background infinite .1s;
+    border-radius: 5px;
+
+    height: 45px;
+    width: 45px;
+}
+
+table {
+    border-spacing: 5px;
+
+    margin: auto;
+}
+
+.button_gestion_2 {
+    border: solid 1px black;
+    border-radius: 7px;
+    animation: background infinite .1s;
+    font-size: 15px;
+    cursor: pointer;
+    
+    height: 30px;
+    width: 100px;
+}
+
+.button_gestion {
+    display: block;
+
+    animation: background infinite .1s;
+    border-radius: 7px;
+    font-size: 15px;
+    
+    height: 40px;
+    width: 130px;
+}
+
+.button_tableau {
+    background-color: #00000000;
+    border: #00000000;
+    cursor: pointer;
+    text-align: center;
+    font-size: 30px;
+
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.tableau {
+    margin: auto;
+    margin-right: 0px;
+}
+
+.gestion {
+    animation: background infinite .1s;
+    animation: color infinite .1s;
+    border: solid 1px black;
+    border-radius: 15px;
+
+    padding: 30px;
+    margin: auto;
+    height: 425px;
+    width: 325px;
+}
+
+.carre {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    backdrop-filter: blur(2px);
+    border: #06001e solid 3px;
+    border-radius: 15px;
+    background: #06001e82;
+
+    margin: auto;
+    height: 675px;
+    width: 1400px;
+}
+
+
+
+#crypte {
+    display: block;
+
+    height: 115px;
+    width: 300px;
+}
+
+#decrypte {
+    display: block;
+    
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#valide {
+    display: block;
+    
+    border: solid 1px;
+    border-radius: 7px;
+    
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
