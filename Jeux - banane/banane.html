@@ -1,0 +1,373 @@
+<!-- <!DOCTYPE html> -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" id="icon">
+
+	<!-- Donner generale -->
+	<script>
+		var image_principale_nom = ["banane-b.png", "banane-j.png","banane-m.png","banane-r.png","banane-v.png"];
+		var image_explosion_nom = ["Explosion 01.png", "Explosion 02.png","Explosion 03.png"];
+		var fond = "photo.png";
+		
+		var taille_range = 50;
+		var taille_range_max = 100;
+		
+		var vitesse_range = 50;
+		var vitesse_range_max = 100;
+		var diviseur = .0625;
+		var vitesse_difference = 25;
+		
+		var nombre_range = 20;
+		var nombre_range_max = 250;
+
+		var taille_canvas_h = 450;
+		var taille_canvas_w = 500;
+
+		var durer_max = 40;
+		var durer_max_nuke = 125;
+		var Nuke_max = 50;
+		var Nombre_loupe_Nuke_max = 20;
+	</script>
+
+	<!-- Titre + image de la page -->
+	<script>
+		document.title = "🍌 EXPLOSE LES BANANES 🍌"; 
+		const titles_image = ['Image/banane-j.png', 'Image/Explosion 01.png', 'Image/banane-j.png', 'Image/Explosion 02.png', 'Image/banane-j.png', 'Image/Explosion 03.png', ];
+		let index = 0;
+		setInterval(function () { 
+			document.getElementById('icon').href = titles_image[index++ % titles_image.length];
+		} , 1000);
+	</script>
+</head>
+<body>
+
+	<!-- Html -->
+	<div style="display: flex;justify-content: space-around;align-content: space-around; margin-top: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+		<div style="display: flex;flex-wrap: nowrap;align-items: center;" class="flex_800">
+			<canvas id="c" style="border-radius: 15px; cursor: url(Image/cursor.png)25 25, auto;" onclick="click_image(event)"></canvas>
+			<div style="width: 375px; margin-left: 50px; display: flex;flex-direction: column;flex-wrap: nowrap;align-content: space-around;align-items: flex-start;justify-content: center;">
+				<div style="display: flex;flex-direction: column;">
+					<div style="display: flex;flex-direction: column;">
+						<h2 style="margin-bottom: 0px; margin-top: 0px;">Taille Banane</h2>
+						<div style="display: flex;flex-direction: row;align-items: center;">
+							<input type="range" id="Ftaille" oninput="Ftaille2()" min="1" style="width: 200px; margin-right: 15px; cursor: pointer;">
+							<div id="div_taille"></div>
+						</div>
+					</div>
+					<div style="display: flex;flex-direction: column;">
+						<h2 style="margin-bottom: 0px; margin-top: 15px;">Vitesse Max</h2>
+						<div style="display: flex;flex-direction: row;align-items: center;">
+							<input type="range" id="Fvitesse" oninput="Fvitesse2()" min="1" style="width: 200px; margin-right: 15px; cursor: pointer;">
+							<div id="div_vitesse"></div>
+						</div>
+					</div>
+					<div style="display: flex;flex-direction: column;">
+						<h2 style="margin-bottom: 0px; margin-top: 15px;">Nombre de Banane</h2>
+						<div style="display: flex;flex-direction: row;align-items: center;">
+							<input type="range" id="Fnombre" oninput="Fnombre2()" min="1" style="width: 200px; margin-right: 15px; cursor: pointer;">
+							<div id="div_nombre"></div>
+						</div>
+					</div>
+				</div>
+				<div style="display: flex;flex-direction: column; margin-top: 50px;">
+					<div style="display: flex;flex-direction: row;">
+						<h2 style="margin-bottom: 0px; margin-top: 15px;">Score : </h2>
+						<h2 id="score" style="margin-bottom: 0px; margin-top: 15px; margin-left: 10px;"></h2>
+					</div>
+					<div style="display: flex;flex-direction: row;">
+						<h2 style="margin-bottom: 0px; margin-top: 15px;">Nombre click : </h2>
+						<h2 id="nombre_click" style="margin-bottom: 0px; margin-top: 15px; margin-left: 10px;"></h2>
+					</div>
+					<div style="display: flex;flex-direction: row;">
+						<h2 style="margin-bottom: 0px; margin-top: 15px;">Nombre de banane loupée : </h2>
+						<h2 id="nombre_loupe" style="margin-bottom: 0px; margin-top: 15px; margin-left: 10px;"></h2>
+					</div>
+				</div>
+				<div style="display: flex;flex-direction: row; margin-top: 50px;">
+					<input id="button_nuke" type="button" value="Nuke" onclick="nuke()" style="cursor: pointer; width: 100px; height: 35px; border-radius: 10px; margin-right: 25px; border: solid 2px black; font-size: 20px; color: aliceblue; background-image: url('Image/progression.png'); background-position: 100%;">
+					<input id="button" type="button" value="Pause" onclick="button_P()" style="cursor: pointer; width: 100px; height: 35px; border-radius: 10px; border: solid 2px black; background-color: #cc1a09; font-size: 20px; color: aliceblue;">
+				</div>	
+			</div>
+		</div>
+	</div>
+	<style> @media (max-width: 930px) { .flex_800 { flex-direction: column; } #c { margin-bottom: 25px; } } @media (min-width: 930px) { .container { flex-direction: row;} }</style>
+	<style>
+		#c {
+			animation: explosion .05s infinite;
+			animation-play-state: paused;
+		}
+
+		@keyframes explosion {
+			0% {
+				translate: 0px;
+			}
+			25% {
+				translate: -10px;
+			}
+			50% {
+				translate: 10px;
+			}
+			100% {
+				translate: 0px;
+			}
+		}
+	</style>
+	<div style='display:none;' class="image_banane">
+	</div>
+
+	<!-- Mettre les image dans le html -->
+	<script>
+		var nombre_image_principale = image_principale_nom.length;
+		var div = document.querySelector('.image_banane');
+		for (i = 0; i < nombre_image_principale; i++) {
+			var img = document.createElement('img');
+			img.id = "image-" + (i + 1);
+			img.setAttribute("src", "Image\\" + image_principale_nom[i]);
+			div.appendChild(img);
+		}
+
+		var nombre_image_explosion = image_explosion_nom.length;
+		for (i = 0; i < nombre_image_explosion; i++) {
+			img = document.createElement('img');
+			img.id = "explosion-" + (i + 1);
+			img.setAttribute("src", "Image\\" + image_explosion_nom[i]);
+			div.appendChild(img);
+		}
+
+		img = document.createElement('img');
+		img.id = "photo";
+		img.setAttribute("src", "Image\\" + fond);
+		div.appendChild(img);
+	</script>
+
+	<!-- Identifiant et valeur de début -->
+	<script>
+		var c = document.getElementById('c');
+		c.width = taille_canvas_w;
+		c.height = taille_canvas_h;
+		var ctx = c.getContext('2d');
+		var photo = document.getElementById('photo');
+		var Ftaille = document.getElementById('Ftaille');
+		var Fvitesse = document.getElementById('Fvitesse');
+		var Fnombre = document.getElementById('Fnombre');
+		Ftaille.value = taille_range;
+		Ftaille.max = taille_range_max;
+		Fvitesse.value = vitesse_range;
+		Fvitesse.max = vitesse_range_max;
+		Fnombre.value = nombre_range;
+		Fnombre.max = nombre_range_max;
+		document.getElementById('div_taille').textContent = Ftaille.value;
+		document.getElementById('div_vitesse').textContent = Fvitesse.value;
+		document.getElementById('div_nombre').textContent = Fnombre.value;
+
+		var Score = 0;
+		var nombre_click = 0;
+		var nombre_loupe = 0;
+		var Nuke_stat = 0; // 0 => pause | 50 => go
+		var Nombre_loupe_Nuke = 0;
+		var message_nuke = false;
+		document.getElementById('score').textContent = Score;
+		document.getElementById('nombre_click').textContent = nombre_click;
+		document.getElementById('nombre_loupe').textContent = nombre_loupe;
+
+		var banane = [];
+		let type_image=1;
+		for (let i = 0; i < nombre_range_max; i++) {
+			banane[i] = document.getElementById('image-' + type_image);
+			type_image++;
+			type_image = (type_image > nombre_image_principale) ? 1 : type_image;
+		}
+		
+		var vitesse_min = 1;
+		var vitesse = Array(nombre_range_max).fill(0);
+		var x = Array(nombre_range_max).fill(0);
+		var y = Array(nombre_range_max).fill(0);
+		var durer = Array(nombre_range_max).fill(-1);  // < 0 => dessiner | == 0 => fin explosion | > 0 => explosion
+		var explose = Array(nombre_range_max).fill(false); // 0 => null | 1 => Explose
+		x = x.map(x => Math.floor(Math.random() * (c.width - taille_range)));
+		vitesse_min = vitesse_range <= vitesse_difference ? 1 : vitesse_range - vitesse_difference;
+		vitesse = vitesse.map(vitesse => Math.random() * (vitesse_range*diviseur) + (vitesse_min*diviseur));
+	</script>
+
+	<!-- Faire bouger les image -->
+	<script>
+		function Fonction_vitesse(id) {
+			vitesse_min = vitesse_range <= vitesse_difference ? 1 : vitesse_range - vitesse_difference;
+			vitesse[id] = Math.random() * (vitesse_range*diviseur) + (vitesse_min*diviseur);
+		}
+
+		function Image() {
+			if (interaction_PP == false) {
+				ctx.drawImage(photo, 0, 0, c.width, c.height);
+	
+				for (let i = 0; i < nombre_range; i++) {
+					y[i] += vitesse[i];
+					if (y[i] >= c.height) {
+						nombre_loupe++;
+						document.getElementById('nombre_loupe').textContent = nombre_loupe;
+						Nombre_loupe_Nuke++;
+						if (Nombre_loupe_Nuke >= Nombre_loupe_Nuke_max  && Nuke_stat < Nuke_max) {
+							Nombre_loupe_Nuke = 0;
+							if (Nuke_stat > 0) {
+								Nuke_stat--;
+								document.getElementById('button_nuke').style.backgroundPosition = ((Nuke_max - Nuke_stat )* 2) + "%";
+							}
+						}
+						
+						y[i] = 0;
+						x[i] = Math.floor(Math.random() * (c.width - taille_range));
+						Fonction_vitesse(i);
+					}
+	
+					if (durer[i] == 0) {
+						c.style.animationPlayState = "paused";
+						durer[i] = -1;
+						explose[i] = false;
+	
+						let click_banane_random = Math.floor(Math.random() * nombre_image_principale) + 1;
+						banane[i] = document.getElementById('image-' + click_banane_random);
+	
+						x[i] = Math.floor(Math.random() * (c.width - taille_range));
+						y[i] = 0;
+						Fonction_vitesse(i);
+					} else if (durer[i] > 0) {
+						durer[i]--;
+					}
+	
+					ctx.drawImage(banane[i], x[i], y[i], taille_range, taille_range);
+				}
+			}
+		}
+
+		setInterval(Image, 16);
+	</script>
+
+	<!-- Click sur les image + score -->
+	<script>
+		function click_image(event) {
+			const rect = c.getBoundingClientRect();
+			const clickX = Math.floor(event.clientX - rect.left);
+			const clickY = Math.floor(event.clientY - rect.top);
+			console.log("click | x:" + clickX + " , y:" + clickY );
+			nombre_click++;
+			document.getElementById('nombre_click').textContent = nombre_click;
+		
+			for (let i = (nombre_range - 1); i >= 0; i--) {
+				if ((clickX >= x[i] && clickX <= (x[i] + taille_range) ) && (clickY >= y[i] && clickY <= (y[i] + taille_range)) && explose[i] == false) {
+					console.log("click image n" + i);
+
+					let click_explosion_random = Math.floor(Math.random() * 3) + 1;
+					banane[i] = document.getElementById('explosion-' + click_explosion_random);
+
+					vitesse[i] = 0;
+					explose[i] = true;
+					durer[i] = durer_max;
+
+					Score++;
+					document.getElementById('score').textContent = Score;
+					Nuke_stat++;
+					if ( Nuke_stat > Nuke_max) {
+						Nuke_stat = Nuke_max;
+					}
+					if (Nuke_stat >= Nuke_max && message_nuke == false) {
+						console.log("Nuke débloquée");
+						message_nuke = true;
+					}
+					document.getElementById('button_nuke').style.backgroundPosition = ((Nuke_max - Nuke_stat )* 2) + "%";
+					break;
+				}
+			}
+		}
+	</script>
+
+	<!-- Fonction pour les range -->
+	<script>
+		let interaction = 1;
+		function affiche() {
+			console.log("---{ Interaction n" + interaction++ + " }---");
+			console.log("Taille : " + taille_range);
+			console.log("Vitesse : " + vitesse_range);
+			console.log("Nombre de banane : " + nombre_range);
+		}
+
+		function Ftaille2() { 
+			taille_range = parseInt(Ftaille.value);
+			document.getElementById('div_taille').textContent = Ftaille.value;
+			affiche();
+		}
+		
+		function Fvitesse2() {
+			vitesse_range = parseInt(Fvitesse.value) ;
+			document.getElementById('div_vitesse').textContent = Fvitesse.value;
+
+			vitesse_min = vitesse_range <= vitesse_difference ? 1 : vitesse_range - vitesse_difference;
+			vitesse = vitesse.map(vitesse => Math.random() * (vitesse_range*diviseur) + (vitesse_min*diviseur));
+			affiche();
+		}
+
+		function Fnombre2() {
+			nombre_range = parseInt(Fnombre.value);
+			document.getElementById('div_nombre').textContent = Fnombre.value;
+			affiche();
+		}
+
+		var interaction_PP = false;
+		function button_P() {
+			if (interaction_PP == false) {
+				console.log("Pause");
+				document.getElementById('button').style.backgroundColor = "#469d09";
+				document.getElementById('button').value = "Play";
+
+				Fnombre.disabled = true;
+				Fvitesse.disabled = true;
+				Ftaille.disabled = true;
+				c.style.pointerEvents = "none";
+
+				interaction_PP = true;
+			} else {
+				console.log("Play");
+				document.getElementById('button').style.backgroundColor = "#cc1a09";
+				document.getElementById('button').value = "Pause";
+
+				Fnombre.disabled = false;
+				Fvitesse.disabled = false;
+				Ftaille.disabled = false;
+				c.style.pointerEvents = "all";
+
+				interaction_PP = false;
+			}
+		}
+
+		function nuke() {
+			if (interaction_PP == false) {
+				if (Nuke_stat >= Nuke_max) {
+					console.log("! NUKE !");
+
+					Nuke_stat = 0;
+					message_nuke = false;
+					document.getElementById('button_nuke').style.backgroundPosition = "100%";
+
+					c.style.animationPlayState = "running";
+					
+					for (let i = (nombre_range - 1); i >= 0; i--) {
+		
+						let nuke_explosion_random = Math.floor(Math.random() * 3) + 1;
+						banane[i] = document.getElementById('explosion-' + nuke_explosion_random);
+		
+						vitesse[i] = 0;
+						explose[i] = true;
+						durer[i] = durer_max_nuke;
+					}
+					document.getElementById('score').textContent = Score = Score + nombre_range;
+					
+				} else {
+					console.error("Pas encore !");
+				}
+			} else {
+				console.error("Jeux en pause !");
+			}
+		}
+	</script>
+</body>
+</html>
