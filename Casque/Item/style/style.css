@@ -1,0 +1,315 @@
+@font-face {
+    font-family: 'tinder';
+    src: url('Item/fonts/tinder.ttf') format('ttf')
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body::-ms-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    overflow: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: #efa9ba;
+    font-family: 'tinder', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+
+.element_principale {
+    background-color: rgb(245, 238, 243);
+
+    padding: 25px;
+    padding-bottom: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: 30px;
+    border-radius: 15px;
+
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: space-around;
+
+    transform: translateY(50px);
+    transition: transform 0.5s ease-in-out;
+}
+
+.element_principale.active {
+    transform: translateY(-25px);
+}
+
+.image {
+    transition: .3s background-image ease-in-out;
+    background-image: url("../Picture/image-secret.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 15px;
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+}
+
+.image:hover {
+    transition: .3s background-image ease-in-out;
+    background-image: url("../Picture/image-secret-play.svg");
+}
+
+.parent-texte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.texte1, .texte2 {
+    color: rgb(23, 23, 23);
+    font-size: 20px;
+    flex: 1 1 100%;
+}
+
+.texte1 {
+    margin-bottom: 2.5px;
+}
+
+.texte2 {
+    margin-top: 2.5px;
+}
+
+.img-button {
+    display: block;
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.div-button-coeur, .div-button-barre, .div-button-croie {
+    margin: 15px;
+    background-color: rgb(14, 14, 14);
+    border: solid rgb(7, 220, 78) 3px;
+    border-radius: 100%;
+    cursor: pointer;
+}        
+
+.div-button-coeur {
+    border: solid rgb(7, 220, 78) 3px;
+}
+
+.div-button-barre {
+    margin-top: 30px;
+    border: solid rgb(220, 185, 7) 3px;
+}
+
+.div-button-croie {
+    border: solid rgb(183, 7, 7) 3px;
+}
+
+.div-button-croie:hover, .div-button-barre:hover, .div-button-coeur:hover {
+    scale: 1.1;
+    transition: .2s scale ease-in-out;
+}
+
+.div-button-croie, .div-button-barre, .div-button-coeur {
+    scale: 1;
+    transition: .2s scale ease-in-out;
+}
+
+.parametre {
+    transition: .5s rotate ease-in-out;
+    rotate: 0deg;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    cursor: pointer;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.parametre:hover {
+    transition: .5s rotate ease-in-out;
+    rotate: 45deg;
+}
+
+#parametre_fond {
+    position: fixed; 
+    z-index: 200; 
+    bottom: 0; 
+    right: 0; 
+    width: 450px;
+    height: 100%;
+    background-color: #0e0e0e;
+
+    transform: translateX(450px);
+    transition: 1s transform ease-in-out;
+}
+
+h2 {
+    color: #f5eef3;
+    padding-left: 15px;
+}
+
+.div_parametre {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+}
+
+.div_parametre_enfant {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.parametre_musique_image {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    color: #1e0d0e;
+    font-size: 17.5px;
+}
+
+.parametre_musique_bouton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+.parametre_musique {
+    position: absolute;
+    padding: 10px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    width: 430px;
+    background: linear-gradient(317deg, #f97951, #e75578);
+    bottom: 0;
+}
+
+h4 {
+    color: #f5eef3;
+    font-size: 35px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 55px;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+    background-color: #f5eef3;
+    border-radius: 5px;
+    border: solid 2px #ed606c;
+    cursor: pointer;
+}
+
+.actualiser {
+    border: solid 4px #ed606c;
+    background: #f5eef3;
+    width: 150px;
+    height: 40px;
+    font-size: 25px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 15px;
+    transition: .25s scale ease-in-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.actualiser:hover {
+    
+    scale: 1.05;
+}
+
+.bouton-avent:hover {
+    content: url("../Picture/avent-plein.svg")
+}
+
+.bouton-passe:hover {
+    content: url("../Picture/passe-plein.svg")
+}
+
+.element-resulta {
+    background-color: rgb(245, 238, 243);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: space-around;
+    transform: translateY(50px);
+    transition: transform 0.5s ease-in-out;
+    border-radius: 15px;
+    margin: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+	width: 300px;
+}
+
+.image-resulta {
+    transition: .3s background-image ease-in-out;
+    background-image: url(../Picture/image-secret.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.element-parent-resulta {
+    display: flex;
+    margin-bottom: 100px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.classement_resulta {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    top: 10px;
+    left: 10px;
+}
+
+.text_resulta {
+	display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+	text-align: center;
+}
