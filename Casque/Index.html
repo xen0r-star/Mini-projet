@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Smashing Casque</title>
+    <link rel="shortcut icon" href="Item/Picture/Logo Smashing Casque 1.png" type="image/x-icon">
+    <link rel="stylesheet" href="Item/style/style.css">
+</head>
+
+<body>
+    <!-- valeur constante -->
+    <script>
+        const titre_musique = ["Pharrell Williams - Happy", "Blinding Lights - The Weeknd", "Quentin Mosimann - Psyké Underground", "Cars", "Rick Astley - Never Gonna Give You Up", "La mort - Dumb Ways to Die", "Forza Horizon 3", "Noisestorm - Crab Rave", "NOOOOOB - It's raining tacos", "Capibara musclé", "Maroon 5 - Moves like Jagger (Sped Up)", "Chevre - Aaaaaaaaah", "JIAFEI - Ye Hua Xiang"]
+        const nom_casque = {
+            'Apple' : ['AirPods Max - Gris sideral'],
+
+            'Beats' : ['Beats Solo3 sans fil - Noir', 
+                       'BEATS STUDIO3 SANS FIL - Noir obscur'],
+            
+            'Bose' : ['Bose QuietComfort 45 Headphones - Midnight Blue',
+                      'Bose QuietComfort SE headphones - Noir',
+                      'Casque Bose Noise Cancelling Headphones 700 UC - Noir'],
+
+            'JBL' : ['JBL Tour One Reconditionne - Noir',
+                     'JBL Live 660NC - Noir',
+                     'JBL Tune 720BT - Noir'],
+            'Marshall': ['MAJOR IV - Noir',
+                         'MONITOR II - Noir'],
+            'Sennheiser' : ['MOMENTUM 4 Wireless - Noir'],
+            'Sony' : ['WH-1000XM4 - Bleu Nuit',
+                      'WH-1000XM5 - Noir',
+                      'WH-XB910N - Noir'],
+            'Steelseries' : ['ARCTIS 9X - Noir et Vert',
+                             'ARCTIS 7+ - Blanc',
+                             'ARCTIS 7P+ WIRELESS - Blanc']
+        }
+    </script>
+
+    <!-- Titre + element_principale -->
+    <div><img src="Item/Picture/Logo Smashing Casque 2.svg" style="margin: auto; display: block; margin-top: 25px;" height="75px"></div>
+    
+    <div style="display: flex;flex-direction: row;flex-wrap: nowrap;align-items: center;" id="element_parent"></div>
+    
+    <div class="element-parent-resulta" style="display: none;" id="element_parent_resulta"></div>
+ 
+    
+    <!-- Parametre -->
+    <div class="parametre" onclick="parametre(true)"><img src="Item/Picture/parametre.svg" height="50px" width="50px"></div>
+    <div id="parametre_fond">
+        <img src="Item/Picture/croie_fond.png" style="width: 35px; height: 35px; margin: 10px; cursor: pointer; position: absolute;" onclick="parametre(false)">
+        <h4>Marque de casque audio</h4>
+        <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+            <div class="div_parametre">
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox1" onclick="bouton_casque(1)" style="background-image: url('Item/Picture/V.svg');"></div><h2>Apple</h2></div>
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox2" onclick="bouton_casque(2)" style="background-image: url('Item/Picture/V.svg');"></div><h2>Beats</h2></div>
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox3" onclick="bouton_casque(3)" style="background-image: url('Item/Picture/V.svg');"></div><h2>Bose</h2></div>
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox4" onclick="bouton_casque(4)" style="background-image: url('Item/Picture/V.svg');"></div><h2>JBL</h2></div>
+            </div>
+            <div class="div_parametre">
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox5" onclick="bouton_casque(5)" style="background-image: url('Item/Picture/V.svg');"></div><h2>Marshall</h2></div>
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox6" onclick="bouton_casque(6)" style="background-image: url('Item/Picture/V.svg');"></div><h2>Sennheiser</h2></div>
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox7" onclick="bouton_casque(7)" style="background-image: url('Item/Picture/V.svg');"></div><h2>Sony</h2></div>
+                <div class="div_parametre_enfant"><div class="checkbox" id="checkbox8" onclick="bouton_casque(8)" style="background-image: url('Item/Picture/V.svg');"></div><h2>SteelSeries</h2></div>
+            </div>
+        </div>
+        <div class="actualiser" onclick="actualiser()">Actualiser</div>
+        <!-- </div> -->
+        <div class="parametre_musique" >
+            <div class="parametre_musique_image"><img src="Item/Musique/image/musique-1.png" style="margin: 10px;" width="75px" id="parametre_musique_image_id"><h3 id="parametre_musique_nom_id"></h3></div>
+            <div style="position: relative;">
+                <div id="progresse_barre" style=" position:absolute; background-color: rgb(8, 156, 60); width: 0%; height: 10px; border-radius: 19px; margin-bottom: 10px; margin-top: 10px;"></div>
+                <div style="background-color: rgb(36 8 8); width: 100%; height: 10px; border-radius: 19px; margin-bottom: 10px; margin-top: 10px;"></div>
+            </div>
+            <div class="parametre_musique_bouton">
+                <img src="Item/Picture/avent.svg" style="cursor: pointer;" class="bouton-avent" onclick="musique_seting(1)">
+                <img src="Item/Picture/son-on.svg" style="cursor: pointer;" class="bouton-son" onclick="musique_seting(2)" id="volume">
+                <img src="Item/Picture/passe.svg" style="cursor: pointer;" class="bouton-passe" onclick="musique_seting(3)">
+            </div>
+        </div>
+    </div>
+
+    <!-- Musique -->
+    <audio controls style="display: none;" id="audio">
+        <source src="votre_fichier_audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Script -->
+    <script src="Item/JS/seul.js"></script>
+    <script src="Item/JS/multiple.js"></script>
+    <script src="Item/JS/musique.js"></script>
+    <script src="Item/JS/principale.js"></script>
+    <script src="Item/JS/resulta.js"></script>
+</body>
+</html>
