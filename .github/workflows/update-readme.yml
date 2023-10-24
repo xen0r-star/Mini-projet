@@ -1,0 +1,27 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Date
+        run: echo "Dernière mise à jour : $(date)" > README.md
+
+      - name: Update Project List
+        run: echo -e "## Projets\n\n- Projet 1\n- Projet 2\n- Projet 3" >> README.md
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "Your Name"
+          git add README.md
+          git commit -m "Automated README update [skip ci]"
+          git push
